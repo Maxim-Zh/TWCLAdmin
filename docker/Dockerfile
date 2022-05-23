@@ -1,11 +1,22 @@
 FROM python:3.10-alpine
 
-RUN set -ex && \
-    apk update --no-cache
+ARG BUILD_PKG=""
+ARG BUILD_DEPS=""
 
-WORKDIR ./app
+WORKDIR /app
+ENV HOME /app
+
+RUN set -ex && \
+    apk --update add --no-cache $BUILD_PKG && \
+    pip install pipenv --no-cache-dir && \
+    rm -rf /var/cache/apk/*
 
 COPY Pipfile Pipfile.lock ./
 
-RUN pip install pipenv && \
-    pipenv install --system --deploy --ignore-pipfile
+RUN set -ex && \
+    apk add --no-cache --virtual build_deps $BUILD_DEPS && \
+    pipenv install --system --deploy --ignore-pipfile && \
+    rm -rf /var/cache/apk/* && \
+    apk del build_deps
+
+COPY ./src .
