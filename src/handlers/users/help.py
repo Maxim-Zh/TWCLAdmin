@@ -1,11 +1,10 @@
 from aiogram import types
-from aiogram.dispatcher.filters.builtin import CommandHelp
 
 from src.filters import IsPrivate
 from src.loader import dp
 
 
-@dp.message_handler(CommandHelp(), IsPrivate())
+@dp.message_handler(IsPrivate(), commands=['help'])
 async def command_help(message: types.Message):
     template = [
         'Список команд:',
