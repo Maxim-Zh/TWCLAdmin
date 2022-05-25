@@ -18,7 +18,7 @@ async def command_start(message: types.Message):
         'torrent-клиента Keenetic.',
         'Наберите команду /show_commands для отображения клавиатуры с '
         'возможными действиями.',
-        'Для отображение всех возможных команд, наберите /help',
+        'Для отображение всех возможных команд, наберите /help.',
     ]
     text = '\n'.join(template)
     await message.answer(text=text)
