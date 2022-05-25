@@ -1,7 +1,7 @@
 async def on_startup(dp):
     import filters
     import middlewares
-    from src.utils import set_default_commands
+    from utils import set_default_commands
     filters.setup(dp=dp)
     await set_default_commands(dp=dp)
 

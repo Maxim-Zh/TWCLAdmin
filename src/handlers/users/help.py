@@ -1,7 +1,7 @@
 from aiogram import types
 
-from src.filters import IsPrivate
-from src.loader import dp
+from filters import IsPrivate
+from loader import dp
 
 
 @dp.message_handler(IsPrivate(), commands=['help'])

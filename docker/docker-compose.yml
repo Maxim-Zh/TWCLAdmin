@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+  bot:
+    container_name: telegram_bot
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    env_file:
+      - ../src/.env
+    volumes:
+      - ../src:/app/src
+    command: python src/start.py
+    restart: always
+    networks:
+      - app-tier
+
+networks:
+  app-tier:
+    driver: bridge
