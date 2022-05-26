@@ -10,6 +10,7 @@ async def command_help(message: types.Message):
         'Список команд:',
         '/start - Начать общение',
         '/help - Получить помощь',
+        '/show_commands - Показать клавиатуру с доступными действиями',
     ]
     text ='\n'.join(template)
     await message.answer(text=text)
